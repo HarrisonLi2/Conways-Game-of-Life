@@ -3,8 +3,10 @@
 
 Assumptions
 ===========
-On a 2d Grid, a viable Cell has 8 neighbors
+On a 2d Grid, a viable Cell has 8 neighbors.
+
 A dead cell is dark (0). No one is home...
+
 A living cell is colored (1). 
 
 Four Rules
