@@ -1,5 +1,7 @@
 # Conways-Game-of-Life : A zero player, state-based, evolution game with four simple rules
+
 Devised by British mathematician John Conway
+
 Written using Java Swing/AWT
 ==================================================================
 
