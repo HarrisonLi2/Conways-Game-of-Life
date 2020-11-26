@@ -1,4 +1,5 @@
 # Conways-Game-of-Life : A zero player evolution game with four simple rules
+Written using Java Swing/AWT
 ==================================================================
 
 Assumptions
