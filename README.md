@@ -2,7 +2,7 @@
 
 Devised by British mathematician John Conway
 
-Written using Java Swing/AWT
+Written in Java Swing+AWT
 
 ===========================================================================================
 
