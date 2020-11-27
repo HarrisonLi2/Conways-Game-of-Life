@@ -2,8 +2,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+
+import Components.JGameGrid;
+import Components.JGridButton;
+
 import java.util.Timer;
 import java.util.TimerTask;
+
+/*
+ * The Game Of Life Game Window Lives Here
+ */
 
 public class TheGameOfLife extends JFrame{
 	/**
@@ -13,7 +21,9 @@ public class TheGameOfLife extends JFrame{
 	//game instance
 	private GameEngine game;
 	//main jpanels
-	private JPanel grid, controls;
+	private JPanel gridPanel, controls;
+	
+	private JGameGrid grid;
 	
 	//auto generation mode
 	private boolean automode = false;
@@ -21,15 +31,21 @@ public class TheGameOfLife extends JFrame{
 	public TheGameOfLife(int boardSize) {
 		super();
 		this.setTitle("Conway's Game of Life");
-		this.setSize(1280, 960);
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		this.setSize(screenSize.width/2, screenSize.height/2);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	
 		//instantiate the game of life Game logic
 		game = new GameEngine(boardSize);
 		//instantiate the grid for the game board
-		grid = new JPanel(new GridLayout(boardSize, boardSize));
+		gridPanel = new JPanel(new GridLayout(boardSize, boardSize));
+		gridPanel.setBackground(Color.DARK_GRAY);
+		grid = new JGameGrid(boardSize, gridPanel);
+		addGridButtonListeners();
+		
 		//instantiate the game control panel
 		controls = new JPanel();
+		controls.setBackground(Color.LIGHT_GRAY);
 		
 		//populate the game control panel
 		this.createControlPanel();
@@ -38,7 +54,7 @@ public class TheGameOfLife extends JFrame{
 		
 		//add main jpanels to jframe
 		this.getContentPane().add(controls, BorderLayout.NORTH);
-		this.getContentPane().add(grid, BorderLayout.CENTER);
+		this.getContentPane().add(gridPanel, BorderLayout.CENTER);
 		this.setVisible(true);
 	}
 	
@@ -62,13 +78,21 @@ public class TheGameOfLife extends JFrame{
 	
 	//instantiate and add components to control panel
 	private void createControlPanel() {
-		directions = new JLabel("Welcome to the Game of Life! Create a pattern and watch the beauty of simple chaos:");
+		directions = new JLabel("Welcome to the Game of Life! Create a pattern and observe the beauty of chaos:");
 		
 		controls.add(directions, BorderLayout.NORTH);
 		
 		//User options to add into game: can be added upon later
 		String[] selectionOptions = {
-				"None", "Glider", "Light Spaceship", "Heavy Spaceship", "Glider Gun"
+				"None", 
+				"Block",
+				"Beehive",
+				"Blinker",
+				"Pulsar",
+				"Glider", 
+				"Light Spaceship", 
+				"Heavy Spaceship", 
+				"Gosper's Glider Gun",
 		};
 		
 		selections = new JComboBox<String>(selectionOptions);
@@ -97,35 +121,16 @@ public class TheGameOfLife extends JFrame{
 	
 	//loop through the game board 2D array and render a corresponding cell for each entry
 	public void updateGrid() {
-		this.remove(grid);
-		grid.removeAll();
-		for(int row = 0; row < game.getBoard().length; row++) {
-			for(int col = 0; col < game.getBoard().length; col++) {
-				JLabel gridCell = new JLabel();
-				if(game.getBoard()[row][col] == 0) {
-					gridCell.setBackground(Color.black);
-				}
-				else {
-					gridCell.setBackground(Color.green);
-				}
-				gridCell.setOpaque(true);
-				grid.add(gridCell);
-			}
-		}
+		grid.updateGrid(game.getBoard());
 		generationCount.setText("Generation: " + game.getGeneration());
-		this.getContentPane().add(grid, BorderLayout.CENTER);
 		this.revalidate();
-	}
-	
-	
-	//Main Method
-	public static void main(String[]args) {
-		TheGameOfLife game = new TheGameOfLife(25);
 	}
 	
 	/**************************************
 	 Begin ActionListener event handlers
 	 **************************************/
+	
+	//Pattern Generation Handler
 	private class SubmitListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			game.insertPattern((String)selections.getSelectedItem());
@@ -133,6 +138,7 @@ public class TheGameOfLife extends JFrame{
 		}
 	}
 	
+	//Game Reset Handler
 	private class ResetListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			game = new GameEngine(game.getBoard().length);
@@ -142,6 +148,7 @@ public class TheGameOfLife extends JFrame{
 		}
 	}
 	
+	//Next Generation Event Handler
 	private class NextGenListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			game.updateBoard();
@@ -149,6 +156,7 @@ public class TheGameOfLife extends JFrame{
 		}
 	}
 	
+	//AutoGeneration Event Handler
 	private Timer t = new Timer();
 	private class ToggleAutoModeListener implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
@@ -163,9 +171,43 @@ public class TheGameOfLife extends JFrame{
 					public void run() {
 						nextGeneration.doClick();
 					}
-				}, 0, 500);
+				}, 0, 100);
 				
 			}
 		}
+	}
+
+	//Grid Button Click Event Handler
+	private class GridButtonListener implements ActionListener{
+		public void actionPerformed(ActionEvent e) {
+			if(e.getSource() instanceof JGridButton) {
+				JGridButton button = (JGridButton) e.getSource();
+				
+				if(button.getBackground() == Color.BLACK) {
+					game.setBoardEntry(button.getRow(), button.getCol(), 1);
+					button.setBackground(Color.GREEN);
+				}
+				else {
+					game.setBoardEntry(button.getRow(), button.getCol(), 0);
+					button.setBackground(Color.BLACK);
+				}
+				revalidate();
+			}
+		}
+		
+	}
+	//Make grid buttons toggle when clicked
+	private void addGridButtonListeners() {
+		JGridButton[][] gameGrid = grid.getGrid();
+		for(int row = 0; row < grid.getGridSize(); row++) {
+			for(int col = 0; col < grid.getGridSize(); col++) {
+				gameGrid[row][col].addActionListener(new GridButtonListener());
+			}
+		}
+	}
+	
+	//Main Method
+	public static void main(String[]args) {
+		TheGameOfLife game = new TheGameOfLife(50);
 	}
 }

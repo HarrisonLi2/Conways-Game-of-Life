@@ -1,4 +1,6 @@
-
+/*
+ * Game Of Life Logic Lives Here
+*/
 public class GameEngine {
 	//int 2d array to store game state
 	private int[][] board;
@@ -24,6 +26,13 @@ public class GameEngine {
 	//Manual board override
 	public void setBoardStatus(int[][] newBoard) {
 		board = newBoard;
+	}
+	
+	//sets individual grid status
+	public void setBoardEntry(int row, int col, int status) {
+		if(row >= 0 && row < board.length && col >=0 && col < board.length) {
+			board[row][col] = status;
+		}
 	}
 	
 	//returns the generation count
@@ -83,11 +92,6 @@ public class GameEngine {
 		int numNeighborsAlive = 0;
 		
 		//populating next game state
-		
-		//Corner Cells
-		
-		//Edge Cells
-		
 		//Center Cells
 		for(int row = 1; row < board.length-1; row++) {
 			for(int col = 1; col < board[0].length-1; col++) {
@@ -135,24 +139,101 @@ public class GameEngine {
 				}
 			}
 		}
-		
 		//set next game state
 		board = nextBoard;
 		generation++;
 	}
 	
-	//if board size allows, insert pattern to top left of board
+	//if board size allows, insert pattern to set location at top left of board
 	public void insertPattern(String pattern) {
 		switch(pattern){
-			case "Glider":
-				if(board.length > 6) {
-					board[1][2] = 1;
-					board[2][3] = 1;
-					board[3][1] = 1;
-					board[3][2] = 1;
-					board[3][3] = 1;
-				}
+		case "Block":
+			if (board.length > 5) {
+				board[1][1] = 1;
+				board[1][2] = 1;
+				board[2][1] = 1;
+				board[2][2] = 1;
+			}
+			break;
+		case "Beehive":
+			if(board.length > 5) {
+				board[2][1] = 1;
+				board[1][2] = 1;
+				board[1][3] = 1;
+				board[3][2] = 1;
+				board[3][3] = 1;
+				board[2][4] = 1;
+			}
+			break;
+		case "Blinker":
+			if(board.length > 5) {
+				board[1][2] = 1;
+				board[2][2] = 1;
+				board[3][2] = 1;
+			}
+			break;
+		case "Glider":
+			if(board.length > 6) {
+				board[1][2] = 1;
+				board[2][3] = 1;
+				board[3][1] = 1;
+				board[3][2] = 1;
+				board[3][3] = 1;
+			}
+			break;
+		case "Gosper's Glider Gun":
+			if(board.length > 40)
+				board[5][1] = 1;
+				board[5][2] = 1;
+				board[6][1] = 1;
+				board[6][2] = 1;
 				
+				board[5][11] = 1;
+				board[6][11] = 1;
+				board[7][11] = 1;
+				
+				board[4][12] = 1;
+				board[8][12] = 1;
+				
+				board[3][13] = 1;
+				board[9][13] = 1;
+				
+				board[3][14] = 1;
+				board[9][14] = 1;
+				
+				board[6][15] = 1;
+				
+				board[4][16] = 1;
+				board[8][16] = 1;
+				
+				board[5][17] = 1;
+				board[6][17] = 1;
+				board[7][17] = 1;
+				
+				board[6][18] = 1;
+				
+				board[3][21] = 1;
+				board[4][21] = 1;
+				board[5][21] = 1;
+				
+				board[3][22] = 1;
+				board[4][22] = 1;
+				board[5][22] = 1;
+				
+				board[2][23] = 1;
+				board[6][23] = 1;
+				
+				board[1][25] = 1;
+				board[2][25] = 1;
+				board[6][25] = 1;
+				board[7][25] = 1;
+				
+				board[3][35] = 1;
+				board[4][35] = 1;
+				
+				board[3][36] = 1;
+				board[4][36] = 1;
+				break;
 			default:
 		}
 	}
