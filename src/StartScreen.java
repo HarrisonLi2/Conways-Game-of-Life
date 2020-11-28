@@ -79,7 +79,7 @@ public class StartScreen extends JFrame{
 		
 		startContent.add(Box.createVerticalStrut(70));
 		
-		JLabel credits = new JLabel("Created by Harrison Li. Inspired by John Conway.", SwingConstants.CENTER);
+		JLabel credits = new JLabel("Written by Harrison Li. Inspired by John Conway, Zachary Irving, Dylan Beattie.", SwingConstants.CENTER);
 		credits.setFont(new Font("Serif", Font.PLAIN, 10));
 		credits.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startContent.add(credits);
@@ -94,8 +94,8 @@ public class StartScreen extends JFrame{
 		fieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(fieldLabel);
 		
-		boardSizer = new JSlider(1, 100);
-		boardSizer.setMajorTickSpacing(99);
+		boardSizer = new JSlider(25, 100);
+		boardSizer.setMajorTickSpacing(75);
 		boardSizer.addChangeListener(new SliderHandler());
 		boardSizer.setPaintLabels(true);
 		fieldLabel.setText("Board Size: " + boardSizer.getValue());

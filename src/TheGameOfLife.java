@@ -32,7 +32,7 @@ public class TheGameOfLife extends JFrame{
 		super();
 		this.setTitle("Conway's Game of Life");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(screenSize.width, screenSize.height);
+		this.setSize(1280, 960);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	
 		//instantiate the game of life Game logic
@@ -89,6 +89,7 @@ public class TheGameOfLife extends JFrame{
 				"Beehive",
 				"Blinker",
 				"Pulsar",
+				"Pentadecathlon",
 				"Glider", 
 				"Light Spaceship", 
 				"Heavy Spaceship", 
@@ -185,6 +186,7 @@ public class TheGameOfLife extends JFrame{
 				
 				if(button.getBackground() == Color.BLACK) {
 					game.setBoardEntry(button.getRow(), button.getCol(), 1);
+					//System.out.println("board["+button.getRow() + "]["+button.getCol() +"] = 1;");
 					button.setBackground(Color.GREEN);
 				}
 				else {

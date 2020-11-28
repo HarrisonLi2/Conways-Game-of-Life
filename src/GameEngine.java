@@ -172,6 +172,82 @@ public class GameEngine {
 				board[3][2] = 1;
 			}
 			break;
+		case "Pulsar":
+			if(board.length > 25) {
+				board[3][4] = 1;
+				board[3][5] = 1;
+				board[3][6] = 1;
+				board[3][10] = 1;
+				board[3][11] = 1;
+				board[3][12] = 1;
+				board[5][9] = 1;
+				board[6][9] = 1;
+				board[7][9] = 1;
+				board[5][7] = 1;
+				board[6][7] = 1;
+				board[7][7] = 1;
+				board[8][6] = 1;
+				board[8][4] = 1;
+				board[8][5] = 1;
+				board[8][10] = 1;
+				board[8][11] = 1;
+				board[8][12] = 1;
+				board[7][14] = 1;
+				board[6][14] = 1;
+				board[5][14] = 1;
+				board[7][2] = 1;
+				board[5][2] = 1;
+				board[6][2] = 1;
+				board[10][4] = 1;
+				board[10][5] = 1;
+				board[10][6] = 1;
+				board[10][10] = 1;
+				board[10][11] = 1;
+				board[10][12] = 1;
+				board[11][9] = 1;
+				board[11][7] = 1;
+				board[12][9] = 1;
+				board[12][7] = 1;
+				board[13][7] = 1;
+				board[13][9] = 1;
+				board[11][14] = 1;
+				board[12][14] = 1;
+				board[13][14] = 1;
+				board[11][2] = 1;
+				board[12][2] = 1;
+				board[13][2] = 1;
+				board[15][6] = 1;
+				board[15][5] = 1;
+				board[15][4] = 1;
+				board[15][10] = 1;
+				board[15][11] = 1;
+				board[15][12] = 1;
+			}
+			break;
+		case "Pentadecathlon":
+			if(board.length > 20) {
+				board[2][5] = 1;
+				board[3][5] = 1;
+				board[4][5] = 1;
+				board[4][4] = 1;
+				board[4][6] = 1;
+				board[7][4] = 1;
+				board[7][5] = 1;
+				board[7][6] = 1;
+				board[8][5] = 1;
+				board[9][5] = 1;
+				board[10][5] = 1;
+				board[11][5] = 1;
+				board[12][4] = 1;
+				board[12][5] = 1;
+				board[12][6] = 1;
+				board[15][4] = 1;
+				board[15][5] = 1;
+				board[15][6] = 1;
+				board[16][5] = 1;
+				board[17][5] = 1;
+			}
+			break;
 		case "Glider":
 			if(board.length > 6) {
 				board[1][2] = 1;
@@ -181,59 +257,77 @@ public class GameEngine {
 				board[3][3] = 1;
 			}
 			break;
+		case "Light Spaceship":
+			if(board.length > 20) {
+				board[2][2] = 1;
+				board[4][2] = 1;
+				board[5][3] = 1;
+				board[5][4] = 1;
+				board[5][5] = 1;
+				board[5][6] = 1;
+				board[4][6] = 1;
+				board[3][6] = 1;
+				board[2][5] = 1;
+
+			}
+			break;
+		case "Heavy Spaceship":
+			if(board.length > 20) {
+				board[2][2] = 1;
+				board[1][4] = 1;
+				board[1][5] = 1;
+				board[2][7] = 1;
+				board[4][2] = 1;
+				board[5][3] = 1;
+				board[5][4] = 1;
+				board[5][5] = 1;
+				board[5][6] = 1;
+				board[5][7] = 1;
+				board[5][8] = 1;
+				board[4][8] = 1;
+				board[3][8] = 1;
+			}
+			break;
 		case "Gosper's Glider Gun":
-			if(board.length > 40)
+			if(board.length > 40) {
 				board[5][1] = 1;
 				board[5][2] = 1;
 				board[6][1] = 1;
 				board[6][2] = 1;
-				
 				board[5][11] = 1;
 				board[6][11] = 1;
 				board[7][11] = 1;
-				
 				board[4][12] = 1;
 				board[8][12] = 1;
-				
 				board[3][13] = 1;
 				board[9][13] = 1;
-				
 				board[3][14] = 1;
 				board[9][14] = 1;
-				
 				board[6][15] = 1;
-				
 				board[4][16] = 1;
 				board[8][16] = 1;
-				
 				board[5][17] = 1;
 				board[6][17] = 1;
 				board[7][17] = 1;
-				
 				board[6][18] = 1;
-				
 				board[3][21] = 1;
 				board[4][21] = 1;
 				board[5][21] = 1;
-				
 				board[3][22] = 1;
 				board[4][22] = 1;
 				board[5][22] = 1;
-				
 				board[2][23] = 1;
 				board[6][23] = 1;
-				
 				board[1][25] = 1;
 				board[2][25] = 1;
 				board[6][25] = 1;
 				board[7][25] = 1;
-				
 				board[3][35] = 1;
 				board[4][35] = 1;
-				
 				board[3][36] = 1;
 				board[4][36] = 1;
-				break;
+			}
+			break;
 			default:
 		}
 	}
