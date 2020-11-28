@@ -32,7 +32,7 @@ public class TheGameOfLife extends JFrame{
 		super();
 		this.setTitle("Conway's Game of Life");
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		this.setSize(screenSize.width/2, screenSize.height/2);
+		this.setSize(screenSize.width, screenSize.height);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	
 		//instantiate the game of life Game logic
@@ -204,10 +204,5 @@ public class TheGameOfLife extends JFrame{
 				gameGrid[row][col].addActionListener(new GridButtonListener());
 			}
 		}
-	}
-	
-	//Main Method
-	public static void main(String[]args) {
-		TheGameOfLife game = new TheGameOfLife(50);
 	}
 }
