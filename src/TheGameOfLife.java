@@ -110,7 +110,7 @@ public class TheGameOfLife extends JFrame{
 		nextGeneration.addActionListener(new NextGenListener());
 		controls.add(nextGeneration);
 		
-		toggleAutoMode = new JButton("Enable AutoMode");
+		toggleAutoMode = new JButton("Toggle Auto Mode");
 		toggleAutoMode.addActionListener(new ToggleAutoModeListener());
 		controls.add(toggleAutoMode);
 		
