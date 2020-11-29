@@ -31,7 +31,7 @@ public class TheGameOfLife extends JFrame{
 	public TheGameOfLife(int boardSize) {
 		super();
 		this.setTitle("Conway's Game of Life");
-		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		//Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setSize(1280, 960);
 		this.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	
@@ -39,7 +39,7 @@ public class TheGameOfLife extends JFrame{
 		game = new GameEngine(boardSize);
 		//instantiate the grid for the game board
 		gridPanel = new JPanel(new GridLayout(boardSize, boardSize));
-		gridPanel.setBackground(Color.DARK_GRAY);
+		gridPanel.setBackground(Color.BLACK);
 		grid = new JGameGrid(boardSize, gridPanel);
 		addGridButtonListeners();
 		

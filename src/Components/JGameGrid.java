@@ -18,7 +18,7 @@ public class JGameGrid{
 			for(int col = 0; col < gridSize; col++) {
 				grid[row][col] = new JGridButton(row, col);
 				grid[row][col].setBackground(Color.BLACK);
-				grid[row][col].setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+				grid[row][col].setBorder(BorderFactory.createLineBorder(Color.black, 1));
 				panel.add(grid[row][col]);
 			}
 		}
