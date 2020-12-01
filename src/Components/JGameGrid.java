@@ -24,6 +24,7 @@ public class JGameGrid{
 		}
 	}
 	
+	//get the current grid's size
 	public int getGridSize() {
 		return gridSize;
 	}

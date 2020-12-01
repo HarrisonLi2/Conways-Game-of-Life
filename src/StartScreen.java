@@ -19,6 +19,7 @@ public class StartScreen extends JFrame{
 	JSlider boardSizer;
 	JLabel fieldLabel;
 	
+	//Start Screen Constructor
 	public StartScreen() {
 		super();
 		this.setTitle("Conway's Game of Life");
@@ -32,6 +33,7 @@ public class StartScreen extends JFrame{
 		this.setVisible(true);
 	}
 	
+	//Create the Main Start Screen Content Panel
 	private void createPanel() {
 		startContent = new JPanel();
 		startContent.setLayout(new BoxLayout(startContent, BoxLayout.Y_AXIS));
@@ -50,6 +52,7 @@ public class StartScreen extends JFrame{
 	
 	}
 	
+	//Create Components to populate the Main Content Panel
 	private void createRuleLabels() {		
 		
 		JLabel welcome = new JLabel("Welcome to Conway's Game of Life!", SwingConstants.CENTER);
@@ -87,6 +90,7 @@ public class StartScreen extends JFrame{
 		
 	}
 	
+	//Create and populate the Game Start Panel 
 	private void createStart() {
 		JPanel panel = new JPanel();
 		startContent.add(Box.createVerticalStrut(25));
@@ -109,30 +113,33 @@ public class StartScreen extends JFrame{
 		this.add(panel, BorderLayout.SOUTH);
 	}
 	
-	
+	//Attempt to launch a game instance on button click
 	private class StartHandler implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			try {
 				int boardSize = boardSizer.getValue();
 				TheGameOfLife game = new TheGameOfLife(boardSize);
-				dispose();
+				setContentPane(game.getContentPane());
+				setSize(1280,960);
+	
 			}
 			catch(NumberFormatException e1) {
-				System.out.println("Enter an integer please");
+				System.out.println("Something went wrong...");
 			}
 			
 		}
 	}
 	
+	//On slider change, update a label to reflect the new slider value
 	private class SliderHandler implements ChangeListener {
 		public void stateChanged(ChangeEvent e) {
 			fieldLabel.setText("Board Size: "+ boardSizer.getValue());
 		}
 	}
 	
+	//main 
 	public static void main(String[]args) {
-		StartScreen screen = new StartScreen();
+		JFrame screen = new StartScreen();
 	}
-
 }
 

@@ -22,8 +22,15 @@ public class TheGameOfLife extends JFrame{
 	private GameEngine game;
 	//main jpanels
 	private JPanel gridPanel, controls;
-	
+	//custom grid of JGridButtons
 	private JGameGrid grid;
+	
+	
+	//components for control panel
+	private JLabel directions, generationCount;
+	private	JComboBox<String> selections;
+	private JButton submit, reset, nextGeneration, toggleAutoMode;
+	
 	
 	//auto generation mode
 	private boolean automode = false;
@@ -55,7 +62,7 @@ public class TheGameOfLife extends JFrame{
 		//add main jpanels to jframe
 		this.getContentPane().add(controls, BorderLayout.NORTH);
 		this.getContentPane().add(gridPanel, BorderLayout.CENTER);
-		this.setVisible(true);
+		//this.setVisible(true);
 	}
 	
 	//getter for automode toggle status 
@@ -70,11 +77,6 @@ public class TheGameOfLife extends JFrame{
 	public GameEngine getGameInstance() {
 		return game;
 	}
-	
-	//components for control panel
-	private JLabel directions, generationCount;
-	private	JComboBox<String> selections;
-	private JButton submit, reset, nextGeneration, toggleAutoMode;
 	
 	//instantiate and add components to control panel
 	private void createControlPanel() {
