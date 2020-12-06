@@ -8,11 +8,12 @@ import javax.swing.*;
  */
 
 public class JGameGrid{
-	JGridButton[][] grid;
-	int gridSize;
+	private JGridButton[][] grid;
+	private int gridSize;
 	
 	public JGameGrid(int gridSize, JPanel panel){
 		this.gridSize = gridSize;
+	
 		grid = new JGridButton[gridSize][gridSize];
 		for(int row = 0; row < gridSize; row++) {
 			for(int col = 0; col < gridSize; col++) {
@@ -58,3 +59,36 @@ public class JGameGrid{
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

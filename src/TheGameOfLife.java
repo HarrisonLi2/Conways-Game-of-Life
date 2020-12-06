@@ -25,7 +25,6 @@ public class TheGameOfLife extends JFrame{
 	//custom grid of JGridButtons
 	private JGameGrid grid;
 	
-	
 	//components for control panel
 	private JLabel directions, generationCount;
 	private	JComboBox<String> selections;
@@ -48,11 +47,8 @@ public class TheGameOfLife extends JFrame{
 		gridPanel = new JPanel(new GridLayout(boardSize, boardSize));
 		gridPanel.setBackground(Color.BLACK);
 		grid = new JGameGrid(boardSize, gridPanel);
-		addGridButtonListeners();
 		
-		//instantiate the game control panel
-		controls = new JPanel();
-		controls.setBackground(Color.LIGHT_GRAY);
+		addGridButtonListeners();
 		
 		//populate the game control panel
 		this.createControlPanel();
@@ -80,13 +76,24 @@ public class TheGameOfLife extends JFrame{
 	
 	//instantiate and add components to control panel
 	private void createControlPanel() {
-		directions = new JLabel("Welcome to the Game of Life! Create a pattern and observe the beauty of chaos:");
+		//instantiate the game control panel
+		controls = new JPanel(new BorderLayout());
+		controls.setBackground(Color.BLACK);
 		
+		//instruction label
+		directions = new JLabel("Click around or create a pattern, and observe the beauty of chaos!", SwingConstants.CENTER);
+		directions.setAlignmentX(Component.CENTER_ALIGNMENT);
+		directions.setFont(new Font("Monospaced", Font.BOLD, 20));
+		directions.setForeground(Color.GREEN);
 		controls.add(directions, BorderLayout.NORTH);
 		
+		
+		//Flowlayout JPanel For buttons and I/O
+		JPanel interactives = new JPanel();
+		interactives.setBackground(Color.BLACK);
 		//User options to add into game: can be added upon later
 		String[] selectionOptions = {
-				"None", 
+				"Select Pattern", 
 				"Block",
 				"Beehive",
 				"Blinker",
@@ -99,26 +106,29 @@ public class TheGameOfLife extends JFrame{
 		};
 		
 		selections = new JComboBox<String>(selectionOptions);
-		controls.add(selections);
+		interactives.add(selections);
 		
 		submit = new JButton("Create Pattern");
 		submit.addActionListener(new SubmitListener());
-		controls.add(submit);
+		interactives.add(submit);
 		
 		reset = new JButton("Reset Game");
 		reset.addActionListener(new ResetListener());
-		controls.add(reset);
+		interactives.add(reset);
 		
 		nextGeneration = new JButton("Next Generation");
 		nextGeneration.addActionListener(new NextGenListener());
-		controls.add(nextGeneration);
+		interactives.add(nextGeneration);
 		
 		toggleAutoMode = new JButton("Toggle Auto Mode");
 		toggleAutoMode.addActionListener(new ToggleAutoModeListener());
-		controls.add(toggleAutoMode);
+		interactives.add(toggleAutoMode);
 		
 		generationCount = new JLabel();
-		controls.add(generationCount);
+		generationCount.setForeground(Color.GREEN);
+		interactives.add(generationCount);
+		
+		controls.add(interactives, BorderLayout.CENTER);
 		
 	}
 	

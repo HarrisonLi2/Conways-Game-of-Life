@@ -1,3 +1,5 @@
+import java.awt.Color;
+
 /*
  * Game Of Life Logic Lives Here
 */
@@ -11,13 +13,7 @@ public class GameEngine {
 		board = new int[boardsize][boardsize];
 		generation = 0;
 	}
-	
-	//Nondefault: Manual bootup
-	public GameEngine(int[][] starting) {
-		board = starting;
-		generation = 0;
-	}
-	
+
 	//Board accesser method
 	public int[][] getBoard(){
 		return board;

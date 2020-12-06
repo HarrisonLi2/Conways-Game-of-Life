@@ -15,9 +15,9 @@ import javax.swing.event.ChangeListener;
 
 public class StartScreen extends JFrame{
 	
-	JPanel startContent;
-	JSlider boardSizer;
-	JLabel fieldLabel;
+	private JPanel startContent;
+	private JSlider boardSizer;
+	private JLabel fieldLabel;
 	
 	//Start Screen Constructor
 	public StartScreen() {
@@ -57,15 +57,8 @@ public class StartScreen extends JFrame{
 		
 		JLabel welcome = new JLabel("Welcome to Conway's Game of Life!", SwingConstants.CENTER);
 		welcome.setAlignmentX(Component.CENTER_ALIGNMENT);
-		welcome.setFont(new Font("SansSerif", Font.BOLD,28));
+		welcome.setFont(new Font("Monospaced", Font.BOLD,28));
 		startContent.add(welcome);
-		
-		startContent.add(Box.createVerticalStrut(25));
-		
-		JLabel overview = new JLabel("One Board of Cells. Zero Players. Living cells are green. Dead cells are black.", SwingConstants.CENTER);
-		overview.setFont(new Font("SansSerif", Font.BOLD, 14));
-		overview.setAlignmentX(Component.CENTER_ALIGNMENT);
-		startContent.add(overview);
 		
 		startContent.add(Box.createVerticalStrut(25));
 		
@@ -80,7 +73,7 @@ public class StartScreen extends JFrame{
 		rules.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startContent.add(rules);
 		
-		startContent.add(Box.createVerticalStrut(70));
+		startContent.add(Box.createVerticalStrut(90));
 		
 		JLabel credits = new JLabel("Written by Harrison Li. Inspired by John Conway, Zachary Irving, Dylan Beattie.", SwingConstants.CENTER);
 		credits.setFont(new Font("Serif", Font.PLAIN, 10));
@@ -92,25 +85,29 @@ public class StartScreen extends JFrame{
 	
 	//Create and populate the Game Start Panel 
 	private void createStart() {
-		JPanel panel = new JPanel();
+		JPanel startPanel = new JPanel();
 		startContent.add(Box.createVerticalStrut(25));
-		fieldLabel = new JLabel("Board Dimension: ", SwingConstants.CENTER);
-		fieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-		panel.add(fieldLabel);
+		
+		
 		
 		boardSizer = new JSlider(25, 100);
 		boardSizer.setMajorTickSpacing(75);
 		boardSizer.addChangeListener(new SliderHandler());
 		boardSizer.setPaintLabels(true);
-		fieldLabel.setText("Board Size: " + boardSizer.getValue());
-		panel.add(boardSizer);
+		
+		//initialize and configure board size slider
+				fieldLabel = new JLabel("Selected board size: " + boardSizer.getValue(), SwingConstants.CENTER);
+				fieldLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+				startPanel.add(fieldLabel);
+		startPanel.add(boardSizer);
 
+		//initialize and configure start button
 		JButton startButton = new JButton("Play Game");
 		startButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		startButton.addActionListener(new StartHandler());
 		startContent.add(Box.createVerticalStrut(50));
-		panel.add(startButton);
-		this.add(panel, BorderLayout.SOUTH);
+		startPanel.add(startButton);
+		this.add(startPanel, BorderLayout.SOUTH);
 	}
 	
 	//Attempt to launch a game instance on button click
@@ -133,7 +130,7 @@ public class StartScreen extends JFrame{
 	//On slider change, update a label to reflect the new slider value
 	private class SliderHandler implements ChangeListener {
 		public void stateChanged(ChangeEvent e) {
-			fieldLabel.setText("Board Size: "+ boardSizer.getValue());
+			fieldLabel.setText("Selected board size: "+ boardSizer.getValue());
 		}
 	}
 	
