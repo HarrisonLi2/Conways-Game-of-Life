@@ -182,9 +182,10 @@ public class TheGameOfLife extends JFrame{
 				t = new Timer();
 				t.schedule(new TimerTask() {
 					public void run() {
-						nextGeneration.doClick();
+						game.updateBoard();
+						updateGrid();
 					}
-				}, 0, 100);
+				}, 0, 50);
 				
 			}
 		}
